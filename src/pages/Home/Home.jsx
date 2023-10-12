@@ -8,8 +8,18 @@ const Home = () => {
   // api call here 
 
   const fetchBlogs = async ()=>{
-   const response =  await axios.get('http://localhost:2000/blogs')
-   setBlogs(response.data.blogs)
+    try {
+      const response =  await axios.get('http://localhost:2000/blogs')
+      
+      if(response.status == 200){
+
+        setBlogs(response.data.blogs)
+      }else {
+        // code here 
+      }
+    } catch (error) {
+      alert("Something went wrong")
+    }
   }
   useEffect(()=>{
     fetchBlogs()
@@ -30,6 +40,7 @@ const Home = () => {
       </div>
       )
     }) }
+
  
 </div>
     </div>
