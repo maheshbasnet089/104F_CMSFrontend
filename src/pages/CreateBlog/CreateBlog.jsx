@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import './Createblog.css'
 import axios from 'axios'
@@ -6,17 +5,13 @@ import { useNavigate } from 'react-router-dom'
 
 const CreateBlog = () => {
     const navigate = useNavigate()
-    const [title,setTitle] = useState("")
-    const [subTitle,setSubTitle] = useState("")
-    const [description,setDescription] = useState("")
+    
+  
 
     const createBlog = async (e)=>{
          e.preventDefault()
-        const data = {
-            title : title, // backendLayLeko : StateName
-            subTitle : subTitle,
-            description : description
-        }
+         const formData = new FormData(e.currentTarget) // {}
+        const data =  Object.fromEntries(formData)
 
          // send above states data to api 
         const response =  await axios.post("http://localhost:2000/blogs",data)
@@ -37,15 +32,15 @@ const CreateBlog = () => {
     <form onSubmit={createBlog}>
         <div className="form-group">
             <label htmlFor="title">Title</label>
-            <input type="text" id="title" name="title" placeholder="Enter Title" onChange={(e)=>setTitle(e.target.value)} />
+            <input type="text" id="title" name="title" placeholder="Enter Title"  />
         </div>
         <div className="form-group">
             <label htmlFor="subtitle">Subtitle</label>
-            <input type="text" id="subtitle" name="subtitle" placeholder="Enter Subtitle" onChange={(e)=>setSubTitle(e.target.value)} />
+            <input type="text" id="subtitle" name="subTitle" placeholder="Enter Subtitle"  />
         </div>
         <div className="form-group">
             <label htmlFor="description">Description</label>
-            <textarea id="description" name="description" rows="4" placeholder="Enter Description" onChange={(e)=>setDescription(e.target.value)} ></textarea>
+            <textarea id="description" name="description" rows="4" placeholder="Enter Description"  ></textarea>
         </div>
         <button className="btn" type="submit">Submit</button>
     </form>
