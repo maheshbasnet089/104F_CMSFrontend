@@ -1,6 +1,7 @@
 import axios from "axios"
 import Navbar from "../../components/Navbar/Navbar"
 import { useEffect,useState } from "react"
+import { Link } from "react-router-dom"
 
 
 const Home = () => {
@@ -36,7 +37,8 @@ const Home = () => {
         <h5 className="card-title">{blog.title}</h5>
         <h5 className="card-title">{blog.subTitle}</h5>
         <p className="card-text">{blog.description}</p>
-        <a href="#" className="btn btn-primary">Go somewhere</a>
+        <Link to={`/singleBlog/${blog._id}`} >See More</Link>
+        
       </div>
       )
     }) }
