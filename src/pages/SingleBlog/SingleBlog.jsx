@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
-import { useNavigate, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 
 const SingleBlog = () => {
     const navigate = useNavigate()
@@ -35,6 +35,7 @@ const SingleBlog = () => {
         <h3>{blog.subTitle}</h3>
         <p>{blog.description}</p>
         <button onClick={deleteBlog} >Delete</button>
+     <Link to={`/update/${blog._id}`} > Update</Link> 
     </div>
   )
 }
